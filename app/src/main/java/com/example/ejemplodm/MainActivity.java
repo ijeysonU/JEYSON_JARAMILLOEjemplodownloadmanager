@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        getPermission(permisos);
 
     }
     public void getPermission(ArrayList<String> permisosSolicitados){
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     String ideEva = lstEval.get(recyclerView.getChildAdapterPosition(v)).getUrl();
-                                    BajarDoc(recyclerView, ideEva);
+                                    BajarDoc(v, ideEva);
                                 }
                             });
 

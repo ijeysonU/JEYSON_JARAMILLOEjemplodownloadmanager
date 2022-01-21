@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class archivosAdaptador extends RecyclerView.Adapter<archivosViewHolder>
-implements Button.OnClickListener{
+implements View.OnClickListener{
     private Context ctx;
     private List<c_Archivos> lstArchivos;
     private View.OnClickListener listener;
@@ -27,7 +27,7 @@ public archivosAdaptador(Context mCtx, List<c_Archivos> archivos){
     public archivosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
         View view = inflater.inflate(R.layout.archivos_ly, null);
-        view.setOnClickListener(parent.findViewById(R.id.btnDescargar));
+        view.setOnClickListener(this);
         return new archivosViewHolder(view);
     }
 
@@ -55,7 +55,7 @@ public archivosAdaptador(Context mCtx, List<c_Archivos> archivos){
         return size;
     }
 
-    public void setOnClickListener(Button.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener;
     }
 
