@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +13,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class archivosAdaptador extends RecyclerView.Adapter<archivosViewHolder>{
+public class archivosAdaptador extends RecyclerView.Adapter<archivosViewHolder>
+implements Button.OnClickListener{
     private Context ctx;
     private List<c_Archivos> lstArchivos;
+    private View.OnClickListener listener;
 public archivosAdaptador(Context mCtx, List<c_Archivos> archivos){
     this.lstArchivos = archivos;
     ctx = mCtx;
@@ -24,6 +27,7 @@ public archivosAdaptador(Context mCtx, List<c_Archivos> archivos){
     public archivosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
         View view = inflater.inflate(R.layout.archivos_ly, null);
+        view.setOnClickListener(parent.findViewById(R.id.btnDescargar));
         return new archivosViewHolder(view);
     }
 
@@ -49,5 +53,16 @@ public archivosAdaptador(Context mCtx, List<c_Archivos> archivos){
     public int getItemCount() {
         final int size = lstArchivos.size();
         return size;
+    }
+
+    public void setOnClickListener(Button.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener!=null){
+            listener.onClick(v);
+        }
     }
 }

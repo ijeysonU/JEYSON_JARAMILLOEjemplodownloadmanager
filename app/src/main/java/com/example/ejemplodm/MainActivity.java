@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void BajarDoc(View v){
-        String url = "https://www.uteq.edu.ec/revistacyt/archivossitio/instrucciones_albitro.pdf";
+    public void BajarDoc(View v, String uri){
+        String url = uri;
         DownloadManager.Request request =  new DownloadManager.Request(Uri.parse(url));
         request.setDescription("PDF");
         request.setTitle("pdf");
@@ -150,17 +150,13 @@ public class MainActivity extends AppCompatActivity {
                             lstEval = c_Archivos.JsonObjectsBuild(jsonArray);
                             archivosAdaptador archivosAdaptador = new archivosAdaptador(MainActivity.this, lstEval);
                             recyclerView.setAdapter(archivosAdaptador);
-                            //archivosAdaptador.setOnClickListener(new View.OnClickListener() {
-                            //    @Override
-                            //    public void onClick(View v) {
-                            //        String ideEva = lstEval.get(recyclerView.getChildAdapterPosition(v)).getIdEv();
-                            //        Intent intent = new Intent(MainActivity.this, actListaEvaluar.class);
-                            //        Bundle b = new Bundle();
-                            //        b.putString("vIdentificacionEva", ideEva);
-                            //        intent.putExtras(b);
-                            //        startActivity(intent);
-                            //    }
-                            //});
+                            archivosAdaptador.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String ideEva = lstEval.get(recyclerView.getChildAdapterPosition(v)).getUrl();
+                                    BajarDoc(recyclerView, ideEva);
+                                }
+                            });
 
                             //adaptador_evaluadores ae = new adaptador_evaluadores(MainActivity.this, lstEval);
                             System.out.println("Data: "+lstEval);

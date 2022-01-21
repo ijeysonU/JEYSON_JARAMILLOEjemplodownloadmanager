@@ -86,7 +86,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnEvaluar"
+                android:id="@+id/btnDescargar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lbltamanio"
